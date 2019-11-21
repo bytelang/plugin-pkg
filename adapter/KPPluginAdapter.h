@@ -28,8 +28,6 @@ extern "C" {
 #include "util/KPVariables.h"
 #include "util/KPEvent.hpp"
 
-#include "config.h"
-
 class KPPluginAdapter {
 private:
     AVFilterContext         *filter_context = nullptr;

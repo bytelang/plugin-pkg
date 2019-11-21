@@ -14,8 +14,6 @@
 #include <vector>
 #include <sstream>
 
-#include "config.h"
-
 namespace KPlayer {
     class FileInfo {
     protected:
