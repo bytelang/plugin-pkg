@@ -11,8 +11,6 @@
 
 #include <string>
 
-#include "config.h"
-
 class KPFilterException : public std::exception {
 protected:
     std::string error;
