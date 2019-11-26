@@ -35,10 +35,9 @@ void KPEvent<T>::Publish(T params) {
     variable = params;
     // 开辟子线程处理事件调用
     for (auto &item : listeners) {
-        auto th = std::thread([&] {
+        std::thread([&] {
             item.second(params);
-        });
-        th.detach();
+        }).detach();
     }
 }
 
