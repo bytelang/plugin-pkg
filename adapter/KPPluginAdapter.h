@@ -33,7 +33,7 @@ class KPPluginAdapter {
 private:
     AVFilterContext         *filter_context = nullptr;
     std::string             identify_name;
-    std::future<int>        task_future;
+    std::future<void>       task_future;
     std::condition_variable task_condition;
     std::mutex              task_mutex;
 
@@ -45,7 +45,7 @@ protected:
     std::shared_ptr<spdlog::logger> logger;
 
 protected:
-    virtual int Task() = 0;
+    virtual void Task() = 0;
     void *GetFilterPriv();
 
 public:
@@ -59,7 +59,7 @@ public:
     const std::string &GetFilterDesc();
     void SetFilterContext(AVFilterContext *filter_ctx);
     void NotifyTask();
-    virtual int KillTask() = 0;
+    virtual void KillTask() = 0;
 };
 
 
