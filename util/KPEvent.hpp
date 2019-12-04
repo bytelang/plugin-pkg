@@ -1,8 +1,7 @@
 //
 // Created by karaler on 2019-10-29.
 // Author: karaler
-// Description:
-// Others: 
+// Description: 提供订阅发布基础功能
 // Copyright (c) 2019 ${ORGANIZATION_NAME}. All rights reserved.
 //
 

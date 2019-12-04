@@ -1,7 +1,7 @@
 //
 // Created by karaler on 2019-09-16.
 // Author: karaler
-// Description:
+// Description: 基础变量定义
 // Others: 
 // Copyright (c) 2019 ${ORGANIZATION_NAME}. All rights reserved.
 //

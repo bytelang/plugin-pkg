@@ -1,7 +1,7 @@
 //
 // Created by karaler on 2019-10-30.
 // Author: karaler
-// Description:
+// Description: 提供帮助方法。FileInfo类
 // Others: 
 // Copyright (c) 2019 ${ORGANIZATION_NAME}. All rights reserved.
 //
@@ -13,6 +13,8 @@
 #include <utility>
 #include <vector>
 #include <sstream>
+
+#include "config.h"
 
 namespace KPlayer {
     class FileInfo {

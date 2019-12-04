@@ -1,0 +1,17 @@
+#ifndef KPLAYER_PLUGIN_CONFIG_H
+#define KPLAYER_PLUGIN_CONFIG_H
+
+
+#define KPLAYER_VERSION_BUILD "@kplayer_VERSION_BUILD@"
+#define KPLAYER_VERSION_PLUGIN "@kplayer_VERSION_PLUGIN@"
+
+#define KPLAYER_PLUGIN_FUNC(x) __attribute__ ((visibility ("default"))) x *CreateInstance(PluginParams params)
+
+extern "C" {
+    __attribute__ ((visibility ("default"))) const char* GetPluginVersion(){
+        return KPLAYER_VERSION_PLUGIN;
+    }
+}
+
+#endif //KPLAYER_PLUGIN_CONFIG_H
+
