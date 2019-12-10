@@ -17,6 +17,9 @@ enum KPFilterType {
     KP_FILTER_TYPE_VIDEO,
     KP_FILTER_TYPE_AUDIO,
 };
+const std::string KP_FILTER_TYPE_NONE_STRING  = "NONE";
+const std::string KP_FILTER_TYPE_VIDEO_STRING = "VIDEO";
+const std::string KP_FILTER_TYPE_AUDIO_STRING = "AUDIO";
 
 /**
  * 输出文件类型
@@ -37,5 +40,20 @@ const std::string KP_EMPTY_STRING           = "";
  */
 typedef std::map<std::string, std::string>  PluginParams;
 typedef std::map<std::string, PluginParams> PluginParamsMap;
+
+/**
+ * 解码器状态枚举
+ */
+enum KPDecodeStatus {
+    KP_DECODE_STATUS_NONE,
+    KP_DECODE_STATUS_PLAYING,
+    KP_DECODE_STATUS_STOP,
+    KP_DECODE_STATUS_PAUSE,
+};
+
+const std::string KP_DECODE_STATUS_NONE_STRING    = "NONE";
+const std::string KP_DECODE_STATUS_PLAYING_STRING = "PLAYING";
+const std::string KP_DECODE_STATUS_STOP_STRING    = "STOP";
+const std::string KP_DECODE_STATUS_PAUSE_STRING   = "PAUSE";
 
 #endif //KPLAYER_KPVARIABLES_H

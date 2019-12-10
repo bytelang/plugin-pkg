@@ -38,6 +38,7 @@ private:
     std::future<void>       task_future;
     std::condition_variable task_condition;
     std::mutex              task_mutex;
+    bool                    killed          = false;
 
 protected:
     KPFilterType                    filter_type = KP_FILTER_TYPE_NONE;
@@ -64,6 +65,7 @@ public:
     const AVFilter *GetFilter();
     std::string GetIdentifyName();
     const KPFilterType &GetFilterType();
+    std::string GetRawFilterName();
     std::string GetFilterName();
     const std::string &GetFilterDesc();
     void SetFilterContext(AVFilterContext *filter_ctx);

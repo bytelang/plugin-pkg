@@ -13,6 +13,7 @@
 #include <utility>
 #include <vector>
 #include <sstream>
+#include <fstream>
 
 #include "config.h"
 
@@ -33,6 +34,7 @@ namespace KPlayer {
         std::string GetFileName();
         std::string GetBaseFileName();
         std::string GetFileExtension();
+        bool Exists();
     };
 
     class String {
