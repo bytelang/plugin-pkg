@@ -18,6 +18,9 @@
 #include "config.h"
 
 namespace KPlayer {
+    /**
+     * 文件信息帮助类
+     */
     class FileInfo {
     protected:
         std::string file_path;
@@ -37,10 +40,30 @@ namespace KPlayer {
         bool Exists();
     };
 
+    /**
+     * 字符串帮助类
+     */
     class String {
     public:
         static std::vector<std::string> Split(const std::string &s, char delimiter);
     };
+
+    /**
+     * 内存释放帮助方法
+     */
+    template<typename T>
+    void KPDelete(T *&p, bool is_array = false) {
+        if (p == nullptr)
+            return;
+
+        if (is_array) {
+            delete[] p;
+        } else {
+            delete p;
+        }
+
+        p = nullptr;
+    }
 }
 
 
