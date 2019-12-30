@@ -15,6 +15,8 @@
 #include <sstream>
 #include <fstream>
 
+#include "util/KPDefer.h"
+
 #include "config.h"
 
 namespace KPlayer {
@@ -38,6 +40,8 @@ namespace KPlayer {
         std::string GetBaseFileName();
         std::string GetFileExtension();
         bool Exists();
+        int Data(std::vector<uint8_t> &data);
+        int SetData(const std::vector<uint8_t> &data);
     };
 
     /**
