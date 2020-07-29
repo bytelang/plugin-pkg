@@ -33,19 +33,19 @@ extern "C" {
 
 class KPPluginAdapter {
 private:
-    AVFilterContext         *filter_context = nullptr;
+    AVFilterContext         *filter_context     = nullptr;
     std::string             identify_name;
     std::future<void>       task_future;
     std::condition_variable task_condition;
     std::mutex              task_mutex;
-    bool                    killed          = false;
+    bool                    killed              = false;
 
 protected:
-    KPFilterType                    filter_type = KP_FILTER_TYPE_NONE;
-    std::string                     filter_name;
     std::string                     filter_desc;
     const AVFilter                  *filter     = nullptr;
     std::shared_ptr<spdlog::logger> logger;
+    std::string                     filter_name;
+    KPFilterType                    filter_type = KP_FILTER_TYPE_NONE;
 
 protected:
     /**
@@ -59,16 +59,17 @@ protected:
     void *GetFilterPriv();
 
 public:
-    explicit KPPluginAdapter(std::string identify_name);
+    explicit KPPluginAdapter(std::string identify_name, std::string filter_name, KPFilterType filter_type);
     virtual ~KPPluginAdapter();
     AVFilterContext *GetFilterContext();
     const AVFilter *GetFilter();
-    std::string GetIdentifyName();
-    const KPFilterType &GetFilterType();
-    std::string GetRawFilterName();
     std::string GetFilterName();
+    KPFilterType GetFilterType();
+    std::string GetIdentifyName();
+    std::string GetSignFilterName();
     const std::string &GetFilterDesc();
     void SetFilterContext(AVFilterContext *filter_ctx);
+    virtual std::shared_ptr<KPPluginAdapter> GetSiblingFilter();
 
     /**
      * 调度插件task执行
