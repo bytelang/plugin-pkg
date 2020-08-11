@@ -35,10 +35,39 @@ namespace KPlayer {
     public:
         explicit FileInfo(std::string);
         virtual ~FileInfo();
+        /**
+         * 获取文件完整路径
+         * @return
+         */
         std::string GetFilePath();
+
+        /**
+         * 获取文件路径
+         */
+         std::string GetBaseFilePath();
+
+        /**
+         * 获取不包含目录的文件路径
+         * @return
+         */
         std::string GetFileName();
+
+        /**
+         * 获取不包含目录且不包含扩展的文件名
+         * @return
+         */
         std::string GetBaseFileName();
+
+        /**
+         * 获取文件扩展名
+         * @return
+         */
         std::string GetFileExtension();
+
+        /**
+         * 判断文件是否存在
+         * @return
+         */
         bool Exists();
         int Data(std::vector<uint8_t> &data);
         int SetData(const std::vector<uint8_t> &data);
