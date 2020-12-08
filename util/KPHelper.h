@@ -44,7 +44,7 @@ namespace KPlayer {
         /**
          * 获取文件路径
          */
-         std::string GetBaseFilePath();
+        std::string GetBaseFilePath();
 
         /**
          * 获取不包含目录的文件路径
@@ -86,8 +86,7 @@ namespace KPlayer {
      */
     template<typename T>
     void KPDelete(T *&p, bool is_array = false) {
-        if (p == nullptr)
-            return;
+        assert(p != nullptr);
 
         if (is_array) {
             delete[] p;
