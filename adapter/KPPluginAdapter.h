@@ -16,6 +16,8 @@
 #include <future>
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
+#include <utility>
+#include <time.h>
 
 extern "C" {
 #include <libavformat/avformat.h>
@@ -23,6 +25,7 @@ extern "C" {
 #include <libavutil/opt.h>
 #include <libavfilter/buffersrc.h>
 #include <libavfilter/buffersink.h>
+#include <libavutil/time.h>
 };
 
 #include "exception/KPFilterException.h"
@@ -39,6 +42,7 @@ private:
     std::condition_variable task_condition;
     std::mutex              task_mutex;
     bool                    killed              = false;
+    time_t                  create_at;
 
 protected:
     std::string                     filter_desc;
@@ -46,6 +50,7 @@ protected:
     std::shared_ptr<spdlog::logger> logger;
     std::string                     filter_name;
     KPFilterType                    filter_type = KP_FILTER_TYPE_NONE;
+    PluginParamsObject              plugin_params_object;
 
 protected:
     /**
@@ -59,7 +64,7 @@ protected:
     void *GetFilterPriv();
 
 public:
-    explicit KPPluginAdapter(std::string identify_name, std::string filter_name, KPFilterType filter_type);
+    explicit KPPluginAdapter(std::string identify_name, std::string filter_name, KPFilterType filter_type, PluginParamsObject params_object);
     virtual ~KPPluginAdapter();
     AVFilterContext *GetFilterContext();
     const AVFilter *GetFilter();
@@ -67,6 +72,9 @@ public:
     KPFilterType GetFilterType();
     std::string GetIdentifyName();
     std::string GetSignFilterName();
+    PluginParams GetParams();
+    std::string GetUniqueName();
+    time_t GetCreateAt();
     const std::string &GetFilterDesc();
     void SetFilterContext(AVFilterContext *filter_ctx);
     virtual std::shared_ptr<KPPluginAdapter> GetSiblingFilter();

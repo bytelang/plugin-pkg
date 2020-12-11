@@ -4,7 +4,7 @@
 
 #define KPLAYER_VERSION_PLUGIN "@kplayer_VERSION_PLUGIN@"
 
-#define KPLAYER_PLUGIN_FUNC(x) __attribute__ ((visibility ("default"))) x *CreateInstance(PluginParams params)
+#define KPLAYER_PLUGIN_FUNC(x) __attribute__ ((visibility ("default"))) x *CreateInstance(PluginParamsObject plugin_params)
 
 extern "C" {
     __attribute__ ((visibility ("default"))) const char* GetPluginVersion(){

@@ -31,6 +31,16 @@ enum KPOutputFileType {
     KP_OUTPUT_FILE_TYPE_RTMP,
 };
 
+/**
+ * 输入资源类型
+ * solo 为但资源输入（缺省值）
+ * remix 为混合资源输入
+ */
+enum KPInputFileType {
+    KP_INPUT_FILE_TYPE_SOLO,
+    KP_INPUT_FILE_TYPE_REMIX
+};
+
 const std::string KP_OUTPUT_FILE_FORMAT_MP4 = "mp4";
 const std::string KP_OUTPUT_FILE_FORMAT_FLV = "flv";
 const std::string KP_EMPTY_STRING           = "";
@@ -38,8 +48,13 @@ const std::string KP_EMPTY_STRING           = "";
 /**
  * 插件参数对象
  */
-typedef std::map<std::string, std::string>  PluginParams;
-typedef std::map<std::string, PluginParams> PluginParamsMap;
+typedef std::map<std::string, std::string> PluginParams;
+//typedef std::map<std::string, PluginParams> PluginParamsMap;
+struct PluginParamsObject {
+    std::string  name;
+    std::string  unique;
+    PluginParams params;
+};
 
 /**
  * 解码器状态枚举
