@@ -34,6 +34,14 @@ extern "C" {
 
 #include "config.h"
 
+class KPPluginDriver {
+public:
+    virtual double_t PluginDriverGetCurrentPlayMediaSeekTime() = 0;
+    virtual double_t PluginDriverGetCurrentPlayMediaDuration() = 0;
+    virtual std::string PluginDriverGetCurrentPlayMedia() = 0;
+    virtual std::vector<std::string> PluginDriverGetPlayList() = 0;
+};
+
 class KPPluginAdapter {
 private:
     AVFilterContext         *filter_context     = nullptr;
