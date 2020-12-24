@@ -14,6 +14,7 @@
 #include <vector>
 #include <sstream>
 #include <fstream>
+#include <regex>
 
 #include "util/KPDefer.h"
 
@@ -25,11 +26,13 @@ namespace KPlayer {
      */
     class FileInfo {
     protected:
+        std::string file_scheme;
         std::string file_path;
         std::string file_name;
         std::string file_base_name;
         std::string file_extension;
     protected:
+        void SearchFileScheme();
         void SearchFileName();
         void SearchFileExtension();
     public:
@@ -64,6 +67,8 @@ namespace KPlayer {
          */
         std::string GetFileExtension();
 
+        std::string GetFileScheme();
+
         /**
          * 判断文件是否存在
          * @return
@@ -79,6 +84,7 @@ namespace KPlayer {
     class String {
     public:
         static std::vector<std::string> Split(const std::string &s, char delimiter);
+        static std::string Replace(std::string str, const std::string &search, const std::string &replace, bool all = false);
     };
 
     /**
