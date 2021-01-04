@@ -31,6 +31,7 @@ extern "C" {
 #include "exception/KPFilterException.h"
 #include "util/KPVariables.h"
 #include "util/KPEvent.hpp"
+#include "util/KPDefer.h"
 
 #include "config.h"
 
@@ -44,32 +45,33 @@ public:
 
 class KPPluginAdapter {
 private:
-    AVFilterContext         *filter_context     = nullptr;
-    std::string             identify_name;
-    std::future<void>       task_future;
-    std::condition_variable task_condition;
-    std::mutex              task_mutex;
-    bool                    killed              = false;
-    time_t                  create_at;
+    AVFilterContext                 *filter_context = nullptr;
+    std::string                     identify_name;
+    std::future<void>               task_future;
+    std::condition_variable         task_condition;
+    std::mutex                      task_mutex;
+    bool                            killed          = false;
+    time_t                          create_at;
+    int                             ret             = 0;
+    std::shared_ptr<spdlog::logger> logger;
+    std::timed_mutex                send_value_mutex;
+
+private:
+    std::map<std::string, std::string> apply_options;
+
 
 protected:
-    std::string                     filter_desc;
-    const AVFilter                  *filter     = nullptr;
-    std::shared_ptr<spdlog::logger> logger;
-    std::string                     filter_name;
-    KPFilterType                    filter_type = KP_FILTER_TYPE_NONE;
-    PluginParamsObject              plugin_params_object;
+    std::string        filter_desc;
+    const AVFilter     *filter                      = nullptr;
+    std::string        filter_name;
+    KPFilterType       filter_type                  = KP_FILTER_TYPE_NONE;
+    PluginParamsObject plugin_params_object;
 
 protected:
     /**
      * 转码后进行的插件执行任务
      */
     virtual void Task() = 0;
-
-    /**
-     * 获取avfilter的上下文句柄
-     */
-    void *GetFilterPriv();
 
 public:
     explicit KPPluginAdapter(std::string identify_name, std::string filter_name, KPFilterType filter_type, PluginParamsObject params_object);
@@ -110,6 +112,10 @@ public:
      *          例如在KillTask将定时器停止flag，在此函数中对定时器开启flag进行重置
      */
     virtual void InitTask() = 0;
+
+    int SetPluginValue(std::map<std::string, std::string> value);
+    int ApplyPluginValue();
+    void *GetPluginPriv();
 };
 
 

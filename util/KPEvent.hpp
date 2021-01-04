@@ -18,9 +18,9 @@
 template<typename T>
 class KPEvent {
 protected:
-    std::map <uint64_t, std::function<void(T)>> listeners;
-    std::atomic<int>                            m_atomic_eid;
-    T                                           variable;
+    std::map<uint64_t, std::function<void(T)>> listeners;
+    std::atomic<int>                           m_atomic_eid;
+    T                                          variable;
 public:
     KPEvent();
     void Publish(T);
