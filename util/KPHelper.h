@@ -15,6 +15,7 @@
 #include <sstream>
 #include <fstream>
 #include <regex>
+#include <assert.h>
 
 #include "util/KPDefer.h"
 
