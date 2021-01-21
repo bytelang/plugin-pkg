@@ -18,6 +18,10 @@ protected:
     std::string error;
     int         error_code;
 public:
+    const char *what() const throw() {
+        return error.c_str();
+    }
+
     explicit KPFilterException(const std::string &);
     explicit KPFilterException(const std::string &, const int error_code);
     std::string GetError();
