@@ -32,6 +32,18 @@ enum KPOutputFileType {
 };
 
 /**
+ * 列表播放模式
+ */
+enum KPPlayMode {
+    KP_PLAY_MODE_LIST,
+    KP_PLAY_MODE_QUEUE,
+    KP_PLAY_MODE_RANDOM
+};
+const std::string KP_PLAY_MODE_LIST_STR       = "list";
+const std::string KP_PLAY_MODE_QUEUE_STR      = "queue";
+const std::string KP_PLAY_MODE_RANDOM_STR     = "random";
+
+/**
  * 输入资源类型
  * solo 为但资源输入（缺省值）
  * remix 为混合资源输入
