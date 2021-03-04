@@ -16,6 +16,7 @@
 #include <fstream>
 #include <regex>
 #include <assert.h>
+#include <chrono>
 
 #include "util/KPDefer.h"
 
@@ -103,6 +104,17 @@ namespace KPlayer {
 
         p = nullptr;
     }
+
+    /**
+     * 时间帮助类
+     */
+    class KPDate {
+    protected:
+        int year, month, day, hour, minute, second;
+    public:
+        KPDate* Now();
+        std::string String();
+    };
 }
 
 

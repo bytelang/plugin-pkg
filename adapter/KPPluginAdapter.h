@@ -57,7 +57,7 @@ private:
     std::timed_mutex                send_value_mutex;
 
 private:
-    std::map<std::string, std::string> apply_options;
+    std::vector<std::vector<std::string>> apply_options;
 
 
 protected:
